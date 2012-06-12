@@ -1,31 +1,18 @@
 package ch.crisi.tdd.gameOfLife;
 
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 /**
  * A new Grid is filled with dead Cells by default
  */
 public class Grid {
-    private Cell[][] cells;
+    private Cell[][] cells, cellsBuffer;
 
     public Grid(int size) {
         cells = new Cell[size][size];
-        for (int x = 0; x < cells.length; x++) {
-            for (int y = 0; y < cells[x].length; y++) {
-                cells[x][y] = new Cell(Cell.DEAD);
-            }
-        }
+        fillGridWithDeadCells();
     }
 
     public int getSize() {
         return cells.length;
-    }
-
-    public void put(Cell cell, int x, int y) {
-        cells[x][y] = cell;
     }
 
     public boolean isAlive(int x, int y) {
@@ -71,78 +58,87 @@ public class Grid {
         return cells;
     }
 
-    public void addLife(int x, int y) {
-        put(new Cell(), x, y);
-    }
-
-/*    public void kill(int x, int y) {
-        Cell c = getCell(x, y);
-        kill(c);
-    }*/
-
-/*    private List<Cell> kill(Cell c) {
-        if (isAlive(c)) {
-            cellsBuffer.remove(c);
-            return cellsBuffer;
-        }
-
-        return cells;
-    }*/
-
-/*    private Cell getCell(int x, int y) {
-        for (Cell cell : cells) {
-            if (cell.getXPos() == x && cell.getYPos() == y) {
-                return cell;
-            }
-        }
-
-        return new Cell(-1, -1);
-    }*/
-
-
-    /*    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
-Any live cell with two or three live neighbours lives on to the next generation.
-Any live cell with more than three live neighbours dies, as if by overcrowding.
-Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.*/
-
     public void nextGeneration() {
-        Cell[][] cellsCopy = new Cell[cells.length][cells.length];
-        for (int i = 0; i < cellsCopy.length; i++) {
-            for (int j = 0; j < cellsCopy.length; j++) {
-                cellsCopy[i][j] = new Cell(Cell.DEAD);
-            }
-        }
+        cellsBuffer = new Cell[cells.length][cells.length];
+        fillBufferWithDeadCells();
 
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                Cell c = cells[i][j];
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells[x].length; y++) {
+                Cell c = cells[x][y];
 
-                if (c.isAlive() && countLivesAround(i, j) < 2) {
-                    //Any live cell with fewer than two live neighbours dies, as if caused by under-population.
-                    cellsCopy[i][j] = new Cell(Cell.DEAD);
-                } else if (c.isAlive() && (countLivesAround(i, j) == 2 || countLivesAround(i, j) == 3)) {
-                    //Any live cell with two or three live neighbours lives on to the next generation.
-                    cellsCopy[i][j] = new Cell();
-                } else if (c.isAlive() && countLivesAround(i, j) > 3) {
-                    //Any live cell with more than three live neighbours dies, as if by overcrowding.
-                    cellsCopy[i][j] = new Cell(Cell.DEAD);
-                } else if(c.isDead() && countLivesAround(i,j) == 3) {
-                    //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.*/
-                    cellsCopy[i][j] = new Cell();
+                if (liveCellHasFewerThanTwoLiveNeighbours(c)) {
+                    addDeadCellToBuffer(x, y);
+                } else if (liveCellHasTwoOrThreeLiveNeighbours(c)) {
+                    addLiveCellToBuffer(x, y);
+                } else if (liveCellHasMoreThanThreeLiveNeighbours(c)) {
+                    addDeadCellToBuffer(x, y);
+                } else if (deadCellHasExactlyThreeLiveNeighbours(c)) {
+                    addLiveCellToBuffer(x, y);
                 }
             }
         }
 
-        cells = cellsCopy;
+        cells = cellsBuffer;
     }
 
-    public void fillGridWithLives() {
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j] = new Cell();
+    private void fillGridWithDeadCells() {
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells[x].length; y++) {
+                addDeadCell(x, y);
             }
         }
     }
 
+    private void fillBufferWithDeadCells() {
+        for (int x = 0; x < cellsBuffer.length; x++) {
+            for (int y = 0; y < cellsBuffer.length; y++) {
+                addDeadCellToBuffer(x, y);
+            }
+        }
+    }
+
+    private boolean deadCellHasExactlyThreeLiveNeighbours(Cell c) {
+        return c.isDead() && countLivesAround(c.getX(), c.getY()) == 3;
+    }
+
+    private boolean liveCellHasMoreThanThreeLiveNeighbours(Cell c) {
+        return c.isAlive() && countLivesAround(c.getX(), c.getY()) > 3;
+    }
+
+    private boolean liveCellHasTwoOrThreeLiveNeighbours(Cell c) {
+        return c.isAlive() && (countLivesAround(c.getX(), c.getY()) == 2 || countLivesAround(c.getX(), c.getY()) == 3);
+    }
+
+    private boolean liveCellHasFewerThanTwoLiveNeighbours(Cell c) {
+        return c.isAlive() && countLivesAround(c.getX(), c.getY()) < 2;
+    }
+
+    public void fillGridWithLives() {
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells[x].length; y++) {
+                addLiveCell(x, y);
+            }
+        }
+    }
+
+    public boolean isDead(int x, int y) {
+        return cells[x][y].isDead();
+    }
+
+    public void addDeadCell(int x, int y) {
+        cells[x][y] = new Cell(x, y, Cell.DEAD);
+    }
+
+    private void addDeadCellToBuffer(int x, int y) {
+        cellsBuffer[x][y] = new Cell(x, y, Cell.DEAD);
+    }
+
+    public void addLiveCell(int x, int y) {
+        cells[x][y] = new Cell(x, y, Cell.ALIVE);
+    }
+
+    private void addLiveCellToBuffer(int x, int y) {
+        cellsBuffer[x][y] = new Cell(x, y, Cell.ALIVE);
+    }
 
 }

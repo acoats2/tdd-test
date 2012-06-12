@@ -9,12 +9,14 @@ public class Cell {
     public static final int ALIVE = 1;
 
     private int state;
+    private int x, y;
 
-    public Cell() {
-        this(ALIVE);
+    private Cell() {
     }
 
-    public Cell(int state) {
+    public Cell(int x, int y, int state) {
+        this.x = x;
+        this.y = y;
         this.state = state;
     }
 
@@ -25,5 +27,13 @@ public class Cell {
     public boolean isDead() {
         return !isAlive();
     }
-    
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
 }
