@@ -2,6 +2,9 @@ package ch.crisi.tdd.gameOfLife;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * A new Grid is filled with dead Cells by default
  */
@@ -68,6 +71,10 @@ public class Grid {
         return cells;
     }
 
+    public void addLife(int x, int y) {
+        put(new Cell(), x, y);
+    }
+
 /*    public void kill(int x, int y) {
         Cell c = getCell(x, y);
         kill(c);
@@ -99,15 +106,29 @@ Any live cell with more than three live neighbours dies, as if by overcrowding.
 Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.*/
 
     public void nextGeneration() {
-        Cell[][] cellsCopy = ArrayUtils.clone(cells);
+        Cell[][] cellsCopy = new Cell[cells.length][cells.length];
+        for (int i = 0; i < cellsCopy.length; i++) {
+            for (int j = 0; j < cellsCopy.length; j++) {
+                cellsCopy[i][j] = new Cell(Cell.DEAD);
+            }
+        }
 
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 Cell c = cells[i][j];
 
-                //Any live cell with fewer than two live neighbours dies, as if caused by under-population.
                 if (c.isAlive() && countLivesAround(i, j) < 2) {
+                    //Any live cell with fewer than two live neighbours dies, as if caused by under-population.
                     cellsCopy[i][j] = new Cell(Cell.DEAD);
+                } else if (c.isAlive() && (countLivesAround(i, j) == 2 || countLivesAround(i, j) == 3)) {
+                    //Any live cell with two or three live neighbours lives on to the next generation.
+                    cellsCopy[i][j] = new Cell();
+                } else if (c.isAlive() && countLivesAround(i, j) > 3) {
+                    //Any live cell with more than three live neighbours dies, as if by overcrowding.
+                    cellsCopy[i][j] = new Cell(Cell.DEAD);
+                } else if(c.isDead() && countLivesAround(i,j) == 3) {
+                    //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.*/
+                    cellsCopy[i][j] = new Cell();
                 }
             }
         }

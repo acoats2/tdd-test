@@ -1,6 +1,5 @@
 package ch.crisi.tdd.gameOfLife;
 
-import ch.crisi.tdd.gameOfLife.rules.AliveCellWithFewerThanTwoAliveNeighboursDies;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -19,6 +18,15 @@ public class GridTest {
         grid.put(new Cell(), 0, 0);
 
         assertEquals(true, grid.isAlive(0, 0));
+    }
+
+    @Test
+    public void shouldAddNewLiveOnPotition() {
+        Grid grid = new Grid(3);
+        grid.addLife(1, 1);
+
+        assertEquals(true, grid.isAlive(1, 1));
+        assertEquals(1, grid.countLives());
     }
 
     @Test
@@ -57,35 +65,57 @@ public class GridTest {
         assertEquals(3, grid.countLivesAround(2, 2));
     }
 
-/*    @Test
-    public void shouldKillCell() {
-        Grid grid = new Grid(3);
-        grid.fillAll();
-        grid.kill(1, 1); 
-
-        assertEquals(false, grid.isAlive(1, 1));
-        assertEquals(8, grid.countLives());
-    }*/
-
-/*    @Test
-    public void cellWithFewerThan2LivingNeighboursShouldDie() {
-        Grid grid = new Grid(3);
-        grid.put(new Cell(0, 0));
-        grid.put(new Cell(1, 1));
-        grid.killCellsWithFewerThan2LivingNeighbours();
-        grid.nextGeneration();
-
-        assertEquals(false, grid.isAlive(1, 1));
-    }*/
-
     @Test
-    public void shouldCreateNextGeneration() {
+    public void ruleAnyLiveCellWithFewerThanTwoLiveNeighboursDies() {
         Grid grid = new Grid(3);
         grid.put(new Cell(), 0, 0);
         grid.put(new Cell(), 1, 1);
         grid.nextGeneration();
 
         assertEquals(0, grid.countLives());
+    }
+
+    @Test
+    public void ruleAnyLiveCellWithTwoLiveNeighboursLivesOn() {
+        Grid grid = new Grid(3);
+        grid.addLife(1, 1); //center
+        grid.addLife(0, 0); //neighbours
+        grid.addLife(2, 2);
+        grid.nextGeneration();
+
+        assertEquals(true, grid.isAlive(1, 1));
+    }
+
+    @Test
+    public void ruleAnyLiveCellWithThreeLiveNeighboursLivesOn() {
+        Grid grid = new Grid(3);
+        grid.addLife(1, 1); //center
+        grid.addLife(0, 0); //neighbours
+        grid.addLife(2, 0);
+        grid.addLife(2, 2);
+        grid.nextGeneration();
+
+        assertEquals(true, grid.isAlive(1, 1));
+    }
+
+    @Test
+    public void ruleAnyLiveCellWithMoreThanThreeLiveNeighboursDies() {
+        Grid grid = new Grid(3);
+        grid.fillGridWithLives();
+        grid.nextGeneration();
+
+        assertEquals(false, grid.isAlive(1, 1));
+    }
+
+    @Test
+    public void ruleAnyDeadCellWithExactlyThreeLiveNeighboursBecomesALiveCell() {
+        Grid grid = new Grid(3);
+        grid.addLife(0, 0); //neighbours
+        grid.addLife(0, 1);
+        grid.addLife(2, 2);
+        grid.nextGeneration();
+
+        assertEquals(true, grid.isAlive(1, 1));
     }
 
 

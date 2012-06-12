@@ -5,13 +5,13 @@ import java.awt.event.MouseListener;
 public class CellFactory {
     private CellFactory() {}
 
-    public static Cell createLivingCell(MouseListener listener) {
-        Cell c = new Cell(Cell.ALIVE);
+    public static Cell_ createLivingCell(MouseListener listener) {
+        Cell_ c = new Cell_(Cell_.ALIVE);
         c.addMouseListener(listener);
         return c;
     }
 
-    public static Cell createDeadCell() {
-        return new Cell(Cell.DEAD);
+    public static Cell_ createDeadCell() {
+        return new Cell_(Cell_.DEAD);
     }
 }
