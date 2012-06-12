@@ -7,18 +7,21 @@ import static junit.framework.Assert.assertEquals;
 public class CellTest {
 
     @Test
-    public void shouldCreateAliveCell() {
-        Cell cell1 = new Cell();
-        assertEquals(true, cell1.isAlive());
+    public void shouldCreateLiveCellAtPosition() {
+        Cell cell = new Cell(0, 0, Cell.ALIVE);
 
-        Cell cell2 = new Cell(Cell.ALIVE);
-        assertEquals(true, cell2.isAlive());
+        assertEquals(true, cell.isAlive());
+        assertEquals(0, cell.getX());
+        assertEquals(0, cell.getY());
     }
 
     @Test
-    public void shouldCreateDeadCell() {
-        Cell cell = new Cell(Cell.DEAD);
+    public void shouldCreateDeadCellAtPosition() {
+        Cell cell = new Cell(0, 0, Cell.DEAD);
+
         assertEquals(false, cell.isAlive());
+        assertEquals(0, cell.getX());
+        assertEquals(0, cell.getY());
     }
 
 }

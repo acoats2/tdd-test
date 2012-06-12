@@ -54,10 +54,6 @@ public class Grid {
         return counter;
     }
 
-    public Cell[][] getCells() {
-        return cells;
-    }
-
     public void nextGeneration() {
         cellsBuffer = new Cell[cells.length][cells.length];
         fillBufferWithDeadCells();
