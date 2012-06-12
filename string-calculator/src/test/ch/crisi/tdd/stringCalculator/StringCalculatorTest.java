@@ -1,5 +1,7 @@
-import exceptions.NegativeNumbersException;
+package ch.crisi.tdd.stringCalculator;
+
 import org.junit.*;
+import ch.crisi.tdd.stringCalculator.exceptions.*;
 
 
 import static junit.framework.Assert.assertEquals;

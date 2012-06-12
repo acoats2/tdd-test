@@ -16,7 +16,7 @@
         <outputDirectory>target/classes</outputDirectory>
         <finalName>${artifactId}-${version}</finalName>
         <testOutputDirectory>target/test-classes</testOutputDirectory>
-        <sourceDirectory>src/main.java.ch.crisi.tdd-test.string-calculator</sourceDirectory>
-        <testSourceDirectory>src/test.java.ch.crisi.tdd-test.string-calculator</testSourceDirectory>
+        <sourceDirectory>src/main</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
     </build>
 </project>

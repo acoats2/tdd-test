@@ -1,11 +1,10 @@
-/*
+package ch.crisi.tdd.stringCalculator;/*
 * TDD Kata from http://osherove.com/tdd-kata-1/
 * -> github
 * */
 
 
-
-import exceptions.NegativeNumbersException;
+import ch.crisi.tdd.stringCalculator.exceptions.*;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 

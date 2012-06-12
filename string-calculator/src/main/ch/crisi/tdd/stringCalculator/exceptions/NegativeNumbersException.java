@@ -1,4 +1,4 @@
-package exceptions;
+package ch.crisi.tdd.stringCalculator.exceptions;
 
 public class NegativeNumbersException extends RuntimeException {
 
