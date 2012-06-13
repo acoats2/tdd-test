@@ -9,7 +9,7 @@ public class GameOfLife implements MouseListener {
     public GameOfLife() {
 
     }
-    
+
     public GameOfLife(String startingState) {
         //To change body of created methods use File | Settings | File Templates.
     }
@@ -27,14 +27,10 @@ public class GameOfLife implements MouseListener {
 
     private void init() {
 
-        Grid grid = new Grid(3);
-        grid.addLiveCell(1,1);
-        AbstractGridView gv = new ConsoleGridView();
-        gv.setGrid(grid);
+        testConsoleView();
 
-        gv.render();
-        grid.nextGeneration();
-        gv.render();
+        testSwingView();
+
 
 /*        JFrame frame = new JFrame("Game of Life");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +42,24 @@ public class GameOfLife implements MouseListener {
         contentPane.add(CellFactory.createLivingCell(this));
 
         frame.setVisible(true);*/
+    }
+
+    private void testSwingView() {
+        Grid grid = new Grid(3);
+        grid.addLiveCell(0,0);
+        grid.addLiveCell(1,1);
+        grid.addLiveCell(2,2);
+        SwingGridView gv = new SwingGridView();
+        gv.setGrid(grid);
+        gv.startRenderLoop();
+    }
+
+    private void testConsoleView() {
+        Grid grid = new Grid(3);
+        grid.fillGridWithLives();
+        AbstractGridView gv = new ConsoleGridView();
+        gv.setGrid(grid);
+        gv.startRenderLoop();
     }
 
 
