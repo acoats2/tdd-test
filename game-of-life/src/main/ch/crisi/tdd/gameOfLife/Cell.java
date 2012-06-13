@@ -18,7 +18,7 @@ public class Cell {
     }
 
     public boolean isAlive() {
-        return state == ALIVE ? true : false;
+        return state == ALIVE;
     }
 
     public boolean isDead() {
