@@ -137,6 +137,6 @@ public class GridTest {
 
         assertEquals(true, grid.isAlive(1, 1));
     }
-
+    
 }
     

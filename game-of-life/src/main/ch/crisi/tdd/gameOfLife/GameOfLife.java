@@ -1,7 +1,5 @@
 package ch.crisi.tdd.gameOfLife;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class GameOfLife implements MouseListener {
@@ -28,7 +26,17 @@ public class GameOfLife implements MouseListener {
     }
 
     private void init() {
-        JFrame frame = new JFrame("Game of Life");
+
+        Grid grid = new Grid(3);
+        grid.addLiveCell(1,1);
+        AbstractGridView gv = new ConsoleGridView();
+        gv.setGrid(grid);
+
+        gv.render();
+        grid.nextGeneration();
+        gv.render();
+
+/*        JFrame frame = new JFrame("Game of Life");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
@@ -37,7 +45,7 @@ public class GameOfLife implements MouseListener {
         contentPane.setLayout(new FlowLayout());
         contentPane.add(CellFactory.createLivingCell(this));
 
-        frame.setVisible(true);
+        frame.setVisible(true);*/
     }
 
 

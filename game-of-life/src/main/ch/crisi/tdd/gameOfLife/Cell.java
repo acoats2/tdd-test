@@ -1,8 +1,5 @@
 package ch.crisi.tdd.gameOfLife;
 
-/**
- * A new Cell is ALIVE by default
- */
 public class Cell {
 
     public static final int DEAD = 0;
