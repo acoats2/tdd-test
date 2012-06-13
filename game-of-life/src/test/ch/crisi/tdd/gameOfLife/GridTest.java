@@ -137,6 +137,13 @@ public class GridTest {
 
         assertEquals(true, grid.isAlive(1, 1));
     }
+
+    @Test
+    public void shouldReturnFalseIfNoLifes() {
+        Grid grid = new Grid(3);
+
+        assertEquals(false, grid.hasLifes());
+    }
     
 }
     

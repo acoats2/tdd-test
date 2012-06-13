@@ -137,4 +137,7 @@ public class Grid {
         cellsBuffer[x][y] = new Cell(x, y, Cell.ALIVE);
     }
 
+    public boolean hasLifes() {
+        return countLives() > 0;
+    }
 }
