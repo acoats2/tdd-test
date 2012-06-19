@@ -46,19 +46,17 @@ public class GameOfLife implements MouseListener {
 
     private void testSwingView() {
         Grid grid = new Grid(3);
-        grid.addLiveCell(0,0);
-        grid.addLiveCell(1,1);
-        grid.addLiveCell(2,2);
-        SwingGridView gv = new SwingGridView();
-        gv.setGrid(grid);
+        grid.fillGridWithLives();
+        AbstractGridView gv = new SwingGridView(grid);
+        gv.setTimeout(1000);
         gv.startRenderLoop();
     }
 
     private void testConsoleView() {
         Grid grid = new Grid(3);
         grid.fillGridWithLives();
-        AbstractGridView gv = new ConsoleGridView();
-        gv.setGrid(grid);
+        AbstractGridView gv = new ConsoleGridView(grid);
+//        gv.setTimeout(1000);
         gv.startRenderLoop();
     }
 

@@ -2,20 +2,32 @@ package ch.crisi.tdd.gameOfLife;
 
 public class ConsoleGridView extends AbstractGridView {
 
-    @Override
-    void draw() {
-        for (int x = 0; x < grid.getSize(); x++) {
-            for (int y = 0; y < grid.getSize(); y++) {
-                if (grid.isAlive(x, y)) {
-                    System.out.print("*");
-                } else {
-                    System.out.print("-");
-                }
+    public ConsoleGridView(Grid grid) {
+        super(grid);
+    }
 
-                if (y == grid.getSize() - 1) {
-                    System.out.print("\n");
-                }
-            }
-        }
+    @Override
+    protected void repaint() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected void onNextGeneration() {
+        System.out.print("\n");
+    }
+
+    @Override
+    protected void onNewLine() {
+        System.out.print("\n");
+    }
+
+    @Override
+    protected void renderDeadCell(int x, int y) {
+        System.out.print("-");
+    }
+
+    @Override
+    protected void renderLiveCell(int x, int y) {
+        System.out.print("*");
     }
 }
