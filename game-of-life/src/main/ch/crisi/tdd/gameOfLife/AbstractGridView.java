@@ -1,9 +1,13 @@
 package ch.crisi.tdd.gameOfLife;
 
+import java.awt.*;
+
 public abstract class AbstractGridView {
     private Grid grid;
     private long timeout;
 
+    protected static final int COLOR_BLACK = new Color(0, 0, 0).getRGB();
+    protected static final int COLOR_WHITE = new Color(255, 255, 255).getRGB();
 
     public AbstractGridView(Grid grid) {
         this.grid = grid;
@@ -48,7 +52,7 @@ public abstract class AbstractGridView {
                     renderDeadCell(x, y);
                 }
 
-                if(y == grid.getSize() - 1) {
+                if (y == grid.getSize() - 1) {
                     onNewLine();
                 }
 
@@ -60,7 +64,7 @@ public abstract class AbstractGridView {
     protected abstract void repaint();
 
     protected abstract void onNewLine();
-    
+
     protected abstract void onNextGeneration();
 
     protected abstract void renderDeadCell(int x, int y);
