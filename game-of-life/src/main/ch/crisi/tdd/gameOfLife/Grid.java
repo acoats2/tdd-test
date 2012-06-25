@@ -15,6 +15,11 @@ public class Grid {
         return cells.length;
     }
 
+    public void setSize(int size) {
+        cells = new Cell[size][size];
+        fillGridWithDeadCells();
+    }
+
     public boolean isAlive(int x, int y) {
         return cells[x][y].isAlive();
     }
