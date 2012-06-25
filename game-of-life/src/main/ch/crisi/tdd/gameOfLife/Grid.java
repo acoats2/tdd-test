@@ -117,6 +117,15 @@ public class Grid {
         }
     }
 
+    public void fillGridRandomly() {
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells[x].length; y++) {
+                if (Math.random() < 0.5)
+                    addLiveCell(x, y);
+            }
+        }
+    }
+
     public boolean isDead(int x, int y) {
         return cells[x][y].isDead();
     }
@@ -140,4 +149,5 @@ public class Grid {
     public boolean hasLifes() {
         return countLives() > 0;
     }
+
 }

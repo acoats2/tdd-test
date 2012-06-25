@@ -5,30 +5,28 @@ import java.awt.*;
 
 public class SwingGridView extends AbstractGridView {
 
-    private Container contentPane;
-    private JFrame frame;
+    private JPanel panel;
 
     public SwingGridView(Grid grid) {
         super(grid);
 
-        frame = new JFrame("Game of Life");
+        JFrame frame = new JFrame("Game of Life");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(grid.getSize() * 5, grid.getSize() * 5);
         frame.setVisible(true);
 
-        frame.setLayout(new BorderLayout());
-
-        frame.setLayout(new GridLayout(grid.getSize(), grid.getSize()));
+        panel = new JPanel(new GridLayout(grid.getSize(), grid.getSize()), true);
+        frame.add(panel);
     }
 
     @Override
     protected void repaint() {
-//        contentPane.repaint();
+        panel.updateUI();
     }
 
     @Override
     protected void onNextGeneration() {
-        frame.removeAll();
+        panel.removeAll();
     }
 
     @Override
@@ -38,12 +36,12 @@ public class SwingGridView extends AbstractGridView {
 
     @Override
     protected void renderDeadCell(int x, int y) {
-        frame.add(new JLabel("DEAD"));
+        panel.add(new SwingCellView(SwingCellView.DEAD));
     }
 
     @Override
     protected void renderLiveCell(int x, int y) {
-        frame.add(new JLabel("LIVE"));
+        panel.add(new SwingCellView(SwingCellView.ALIVE));
     }
 
 }

@@ -3,14 +3,14 @@ package ch.crisi.tdd.gameOfLife;
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell_ extends JLabel {
+public class SwingCellView extends JLabel {
 
     public static final int DEAD = 0; //white
     public static final int ALIVE = 1; //black
 
     private int state;
 
-    private Cell_() {
+    private SwingCellView() {
         super();
 
         this.setOpaque(true);
@@ -18,23 +18,12 @@ public class Cell_ extends JLabel {
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
 
-    public Cell_(int state) {
+    public SwingCellView(int state) {
         this();
 
         this.state = state;
-        updateCell();
-
-    }
-
-    public void setState(int state) {
-        this.state = state;
-
-        updateCell();
-    }
-
-    private void updateCell() {
-
         setBackgroundColor();
+
     }
 
     private void setBackgroundColor() {
@@ -44,15 +33,6 @@ public class Cell_ extends JLabel {
         } else {
             this.setBackground(Color.BLACK);
         }
-    }
-
-    public void toggle() {
-        if (state == ALIVE) {
-            state = DEAD;
-        } else {
-            state = ALIVE;
-        }
-        updateCell();
     }
 
 }

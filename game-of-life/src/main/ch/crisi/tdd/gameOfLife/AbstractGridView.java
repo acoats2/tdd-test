@@ -10,6 +10,9 @@ public abstract class AbstractGridView {
         this.timeout = 0;
     }
 
+    public AbstractGridView() {
+    }
+
     protected void startRenderLoop() {
         while (grid.hasLifes()) {
             renderGrid();
@@ -32,7 +35,7 @@ public abstract class AbstractGridView {
         onNextGeneration();
     }
 
-    protected void setTimeout(long ms) {
+    protected void setRefreshRate(long ms) {
         this.timeout = ms;
     }
 
