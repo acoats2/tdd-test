@@ -1,4 +1,7 @@
-package ch.crisi.tdd.gameOfLife;
+package ch.crisi.tdd.gameOfLife.implementation;
+
+import ch.crisi.tdd.gameOfLife.AbstractGridView;
+import ch.crisi.tdd.gameOfLife.Grid;
 
 public class GameOfLife {
 
