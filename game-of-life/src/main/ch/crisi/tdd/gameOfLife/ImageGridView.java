@@ -1,29 +1,24 @@
 package ch.crisi.tdd.gameOfLife;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageGridView extends AbstractGridView {
 
+    private static final int CELL_SIZE = 3;
+
+    private JFrame frame = new JFrame("ImageGridView");
     private BufferedImage image;
-    private JFrame frame;
 
     public ImageGridView(Grid grid) {
         super(grid);
 
-        frame = new JFrame() {
-            @Override
-            public void paint(Graphics g) {
-                super.paint(g);
-                g.drawImage(image, 0, 0, null);
-            }
-        };
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(grid.getSize() * 5, grid.getSize() * 5);
-        frame.setVisible(true);
+        image = new BufferedImage(grid.getSize() * CELL_SIZE, grid.getSize() * CELL_SIZE, BufferedImage.TYPE_INT_RGB);
 
-        image = new BufferedImage(grid.getSize() * 5, grid.getSize() * 5, BufferedImage.TYPE_INT_RGB);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(grid.getSize() * CELL_SIZE, grid.getSize() * CELL_SIZE);
+        frame.setVisible(true);
+        frame.add(new JLabel(new ImageIcon(image)));
     }
 
     @Override
@@ -33,28 +28,26 @@ public class ImageGridView extends AbstractGridView {
 
     @Override
     protected void onNewLine() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     protected void onNextGeneration() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     protected void renderDeadCell(int x, int y) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                image.setRGB(x * 5 + i, y * 5 + j, new Color(0, 0, 0).getRGB());
-            }
-        }
+        drawCellInColor(x, y, COLOR_BLACK);
     }
 
     @Override
     protected void renderLiveCell(int x, int y) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                image.setRGB(x * 5 + i, y * 5 + j, new Color(0, 255, 0).getRGB());
+        drawCellInColor(x, y, COLOR_WHITE);
+    }
+
+    private void drawCellInColor(int x, int y, int color) {
+        for (int i = 0; i < CELL_SIZE; i++) {
+            for (int j = 0; j < CELL_SIZE; j++) {
+                image.setRGB(x * CELL_SIZE + i, y * CELL_SIZE + j, color);
             }
         }
     }
