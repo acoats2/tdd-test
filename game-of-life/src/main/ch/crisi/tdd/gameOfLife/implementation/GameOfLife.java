@@ -11,11 +11,11 @@ public class GameOfLife {
     }
 
     private void init() {
-        testConsoleView();
-        testImageView();
+        startConsoleViewImpl();
+        startImageViewImpl();
     }
 
-    private void testImageView() {
+    private void startImageViewImpl() {
         Grid grid = new Grid(100);
         grid.fillGridRandomly();
 
@@ -24,7 +24,7 @@ public class GameOfLife {
         gv.startRenderLoop();
     }
 
-    private void testConsoleView() {
+    private void startConsoleViewImpl() {
         Grid grid = new Grid(3);
         grid.fillGridWithLives();
         

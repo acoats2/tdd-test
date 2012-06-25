@@ -8,9 +8,6 @@ public class Cell {
     private int state;
     private int x, y;
 
-    private Cell() {
-    }
-
     public Cell(int x, int y, int state) {
         this.x = x;
         this.y = y;
