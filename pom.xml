@@ -12,6 +12,7 @@
         <module>string-calculator</module>
         <module>game-of-life</module>
         <module>bowling-game</module>
+        <module>tic-tac-toe</module>
     </modules>
 
     <dependencies>
