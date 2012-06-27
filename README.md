@@ -8,3 +8,4 @@ Some tdd examples.
 * **bowling-game** http://www.objectmentor.com/resources/articles/xpepisode.htm
 * **tic-tac-toe** http://en.wikipedia.org/wiki/Tic-tac-toe
 * **percent-encoder** http://en.wikipedia.org/wiki/Percent-encoding
+* **fizz-buzz** http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz
