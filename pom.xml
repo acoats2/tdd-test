@@ -13,6 +13,7 @@
         <module>game-of-life</module>
         <module>bowling-game</module>
         <module>tic-tac-toe</module>
+        <module>percent-encoder</module>
     </modules>
 
     <dependencies>
