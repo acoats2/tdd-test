@@ -14,7 +14,7 @@
         <module>bowling-game</module>
         <module>tic-tac-toe</module>
         <module>percent-encoder</module>
-        <module>untitled</module>
+        <module>fizz-buzz</module>
     </modules>
 
     <dependencies>
