@@ -4,7 +4,7 @@ public class FizzBuzz {
     
     public static String process(int number) {
         if (multipleOfThreeAndFive(number))
-            return "fizzbuzz";
+            return "fizzBuzz";
         else if (multipleOfFive(number))
             return "buzz";
         else if (multipleOfThree(number))

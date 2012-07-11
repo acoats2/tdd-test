@@ -16,4 +16,17 @@
         <testSourceDirectory>src/test</testSourceDirectory>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.6.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>1.6.12</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -1,3 +1,5 @@
+package ch.crisi.tdd.fizzBuzz;
+
 import org.junit.Test;
 
 import static ch.crisi.tdd.percentEncoder.FizzBuzz.process;
@@ -22,7 +24,7 @@ public class FizzBuzzTest {
 
     @Test
     public void fifteenReturnsFizzBuzz() {
-        assertEquals("fizzbuzz", process(15));
+        assertEquals("fizzBuzz", process(15));
     }
 
     @Test
@@ -41,14 +43,14 @@ public class FizzBuzzTest {
 
     @Test
     public void multiplesOfThreeAndFiveReturnFizzBuzz() {
-        assertEquals("fizzbuzz", process(15));
-        assertEquals("fizzbuzz", process(30));
-        assertEquals("fizzbuzz", process(45));
+        assertEquals("fizzBuzz", process(15));
+        assertEquals("fizzBuzz", process(30));
+        assertEquals("fizzBuzz", process(45));
     }
 
     @Test
     public void zeroReturnsFizzBuzz() {
-        assertEquals("fizzbuzz", process(0));
+        assertEquals("fizzBuzz", process(0));
     }
 
     @Test
