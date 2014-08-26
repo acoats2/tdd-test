@@ -1,8 +1,8 @@
-package ch.crisi.tdd.fizzBuzz;
+package ch.crisi.tdd.fizzbuzz;
 
 import org.junit.Test;
 
-import static ch.crisi.tdd.percentEncoder.FizzBuzz.process;
+import static ch.crisi.tdd.fizzBuzz.FizzBuzz.process;
 import static junit.framework.Assert.assertEquals;
 
 public class FizzBuzzTest {

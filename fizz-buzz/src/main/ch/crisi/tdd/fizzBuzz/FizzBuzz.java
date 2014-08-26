@@ -1,4 +1,4 @@
-package ch.crisi.tdd.percentEncoder;
+package ch.crisi.tdd.fizzBuzz;
 
 public class FizzBuzz {
     
