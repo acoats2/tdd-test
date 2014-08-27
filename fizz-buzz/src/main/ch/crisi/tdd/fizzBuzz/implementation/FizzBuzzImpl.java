@@ -1,7 +1,6 @@
-package ch.crisi.tdd.percentEncoder.implementation;
+package ch.crisi.tdd.fizzBuzz.implementation;
 
-import ch.crisi.tdd.percentEncoder.FizzBuzz;
-import org.apache.commons.lang3.StringUtils;
+import ch.crisi.tdd.fizzBuzz.FizzBuzz;
 
 import java.util.ArrayList;
 import java.util.Collections;

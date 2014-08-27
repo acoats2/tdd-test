@@ -2,20 +2,19 @@ package ch.crisi.tdd.berlinclock;
 
 
 public class Lamp {
+
+    private Color color;
     private boolean on;
 
-    public Lamp() {
+    public Lamp(Color color) {
+        this.color = color;
         this.on = false;
-    }
-
-    public Lamp(boolean on) {
-        this.on = on;
     }
 
     @Override
     public String toString() {
         if (this.on) {
-            return "1";
+            return color.toString();
         } else {
             return "0";
         }
@@ -23,5 +22,13 @@ public class Lamp {
 
     public void turnOn() {
         this.on = true;
+    }
+
+    public void turnOff() {
+        this.on = false;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

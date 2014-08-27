@@ -1,37 +1,74 @@
 package ch.crisi.tdd.berlinclock;
 
+import java.util.Calendar;
+
 public class BerlinClock {
-    private Row firstHoursRow;
-    private Row secondHoursRow;
-    private Row firstMinutesRow;
-    private Row secondMinutesRow;
+
+    private Lamp secondsLamp;
+    private Row fiveHoursRow;
+    private Row oneHourRow;
+    private Row fiveMinutesRow;
+    private Row oneMinuteRow;
 
     public BerlinClock() {
-        firstHoursRow = new Row(4);
-        secondHoursRow = new Row(4);
-        firstMinutesRow = new Row(11);
-        secondMinutesRow = new Row(4);
+        secondsLamp = new Lamp(Color.YELLOW);
+        secondsLamp.turnOn();
+
+        fiveHoursRow = new Row(4, Color.RED);
+        oneHourRow = new Row(4, Color.RED);
+        fiveMinutesRow = new Row(11, Color.YELLOW);
+        fiveMinutesRow.changeColor(Color.RED, 3, 6, 9);
+        oneMinuteRow = new Row(4, Color.YELLOW);
     }
 
-    public void setHour(int hour) {
-        int fiveHours = hour / 5;
-        int rest = hour % 5;
-
-        for (int i = 1; i <= fiveHours; i++) {
-            firstHoursRow.turnOn(i);
+    public BerlinClock setSeconds(int seconds) {
+        if (seconds % 2 == 0) {
+            secondsLamp.turnOn();
+        } else {
+            secondsLamp.turnOff();
         }
 
-        for (int i = 1; i <= rest; i++) {
-            secondHoursRow.turnOn(i);
-        }
+        return this;
+    }
+
+    public BerlinClock setHours(int hours) {
+        int fiveHours = hours / 5;
+        int rest = hours % 5;
+
+        fiveHoursRow.turnOn(fiveHours);
+        oneHourRow.turnOn(rest);
+
+        return this;
+    }
+
+    public BerlinClock setMinutes(int minutes) {
+        int fiveMinutes = minutes / 5;
+        int rest = minutes % 5;
+
+        fiveMinutesRow.turnOn(fiveMinutes);
+        oneMinuteRow.turnOn(rest);
+
+        return this;
     }
 
 
-    public Row getSecondHoursRow() {
-        return secondHoursRow;
+    public Row getOneHourRow() {
+        return oneHourRow;
     }
 
-    public Row getFirstHoursRow() {
-        return firstHoursRow;
+    public Row getFiveHoursRow() {
+        return fiveHoursRow;
+    }
+
+    public Row getFiveMinutesRow() {
+        return fiveMinutesRow;
+    }
+
+    public Row getOneMinuteRow() {
+        return oneMinuteRow;
+    }
+
+    public Lamp getSecondsLamp() {
+        return secondsLamp;
     }
 }

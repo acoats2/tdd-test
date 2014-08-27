@@ -14,32 +14,111 @@ public class BerlinClockTest {
         berlinClock = new BerlinClock();
     }
 
+
     @Test
-    public void testFirstHoursRow() {
-        berlinClock.setHour(5);
-        assertEquals(berlinClock.getFirstHoursRow().toString(), "1,0,0,0");
+    public void testEvenSeconds() {
+        berlinClock.setSeconds(2);
+
+        assertEquals("Y", berlinClock.getSecondsLamp().toString());
     }
 
     @Test
-    public void testSecondHoursRow() {
-        berlinClock.setHour(1);
-        assertEquals(berlinClock.getSecondHoursRow().toString(), "1,0,0,0");
+    public void testOddSeconds() {
+        berlinClock.setSeconds(3);
 
-        berlinClock.setHour(2);
-        assertEquals(berlinClock.getSecondHoursRow().toString(), "1,1,0,0");
-
-        berlinClock.setHour(3);
-        assertEquals(berlinClock.getSecondHoursRow().toString(), "1,1,1,0");
-
-        berlinClock.setHour(4);
-        assertEquals(berlinClock.getSecondHoursRow().toString(), "1,1,1,1");
+        assertEquals("0", berlinClock.getSecondsLamp().toString());
     }
 
     @Test
-    public void testFirstAndSecondHoursRow() {
-        berlinClock.setHour(6);
-        assertEquals(berlinClock.getFirstHoursRow().toString(), "1,0,0,0");
-        assertEquals(berlinClock.getSecondHoursRow().toString(), "1,0,0,0");
+    public void testFiveHoursRow() {
+        berlinClock.setHours(15);
+
+        assertEquals("R,R,R,0", berlinClock.getFiveHoursRow().toString());
+    }
+
+    @Test
+    public void testOneHourRow() {
+        berlinClock.setHours(2);
+
+        assertEquals("R,R,0,0", berlinClock.getOneHourRow().toString());
+    }
+
+    @Test
+    public void testFiveMinutesRow() {
+        berlinClock.setMinutes(20);
+
+        assertEquals("Y,Y,R,Y,0,0,0,0,0,0,0", berlinClock.getFiveMinutesRow().toString());
+    }
+
+    @Test
+    public void testOneMinuteRow() {
+        berlinClock.setMinutes(2);
+
+        assertEquals("Y,Y,0,0", berlinClock.getOneMinuteRow().toString());
+    }
+
+    @Test
+    public void testOneOclock() {
+        berlinClock.setHours(1);
+
+        assertEquals("R,0,0,0", berlinClock.getOneHourRow().toString());
+    }
+
+    @Test
+    public void testThreeOclock() {
+        berlinClock.setHours(3);
+
+        assertEquals("R,R,R,0", berlinClock.getOneHourRow().toString());
+    }
+
+    @Test
+    public void testFiveOclock() {
+        berlinClock.setHours(5);
+
+        assertEquals("R,0,0,0", berlinClock.getFiveHoursRow().toString());
+    }
+
+    @Test
+    public void testSevenOclock() {
+        berlinClock.setHours(7);
+
+        assertEquals("R,0,0,0", berlinClock.getFiveHoursRow().toString());
+        assertEquals("R,R,0,0", berlinClock.getOneHourRow().toString());
+    }
+
+    @Test
+    public void testAQuarterPastNine() {
+        berlinClock.setHours(9).setMinutes(15);
+
+        assertEquals("R,0,0,0", berlinClock.getFiveHoursRow().toString());
+        assertEquals("R,R,R,R", berlinClock.getOneHourRow().toString());
+        assertEquals("Y,Y,R,0,0,0,0,0,0,0,0", berlinClock.getFiveMinutesRow().toString());
+    }
+
+    @Test
+    public void testSeventeenPastEleven() {
+        berlinClock.setHours(11).setMinutes(17);
+
+        assertEquals("R,R,0,0", berlinClock.getFiveHoursRow().toString());
+        assertEquals("R,0,0,0", berlinClock.getOneHourRow().toString());
+        assertEquals("Y,Y,R,0,0,0,0,0,0,0,0", berlinClock.getFiveMinutesRow().toString());
+        assertEquals("Y,Y,0,0", berlinClock.getOneMinuteRow().toString());
+    }
+
+    @Test
+    public void testNewHour() {
+        berlinClock.setHours(11).setMinutes(59);
+
+        assertEquals("R,R,0,0", berlinClock.getFiveHoursRow().toString());
+        assertEquals("R,0,0,0", berlinClock.getOneHourRow().toString());
+        assertEquals("Y,Y,R,Y,Y,R,Y,Y,R,Y,Y", berlinClock.getFiveMinutesRow().toString());
+        assertEquals("Y,Y,Y,Y", berlinClock.getOneMinuteRow().toString());
+
+        berlinClock.setHours(12).setMinutes(0);
+        assertEquals("R,R,0,0", berlinClock.getFiveHoursRow().toString());
+        assertEquals("R,R,0,0", berlinClock.getOneHourRow().toString());
+        assertEquals("0,0,0,0,0,0,0,0,0,0,0", berlinClock.getFiveMinutesRow().toString());
+        assertEquals("0,0,0,0", berlinClock.getOneMinuteRow().toString());
     }
 
 }
