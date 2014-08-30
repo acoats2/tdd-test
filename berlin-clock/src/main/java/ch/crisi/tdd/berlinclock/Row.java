@@ -1,7 +1,5 @@
 package ch.crisi.tdd.berlinclock;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +16,7 @@ public class Row {
 
     /**
      * Turns on all lamps from left to right to the given lamp number.
+     *
      * @param lampNumber Count of lamps to turn on.
      */
     public void turnOn(int lampNumber) {
@@ -34,14 +33,26 @@ public class Row {
 
     @Override
     public String toString() {
-        return StringUtils.join(lamps, ",");
+        StringBuilder sb = new StringBuilder();
+        for (Lamp lamp : lamps) {
+            sb.append(lamp.toString());
+            sb.append(",");
+        }
+
+        sb.deleteCharAt(sb.length() - 1);
+
+        return sb.toString();
     }
 
-    public void changeColor(Color color, int...lampNumbers) {
+    public void changeColor(Color color, int... lampNumbers) {
         for (int lampNumber : lampNumbers) {
             if (lampNumber > 0 && lampNumber < lamps.size()) {
                 lamps.get(lampNumber - 1).setColor(color);
             }
         }
+    }
+
+    public List<Lamp> getLamps() {
+        return lamps;
     }
 }

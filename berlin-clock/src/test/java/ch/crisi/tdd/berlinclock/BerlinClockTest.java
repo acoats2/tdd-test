@@ -119,6 +119,7 @@ public class BerlinClockTest {
         assertEquals("R,R,0,0", berlinClock.getOneHourRow().toString());
         assertEquals("0,0,0,0,0,0,0,0,0,0,0", berlinClock.getFiveMinutesRow().toString());
         assertEquals("0,0,0,0", berlinClock.getOneMinuteRow().toString());
+
     }
 
 }

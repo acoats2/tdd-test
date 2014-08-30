@@ -1,7 +1,5 @@
 package ch.crisi.tdd.berlinclock;
 
-import java.util.Calendar;
-
 public class BerlinClock {
 
     private Lamp secondsLamp;
