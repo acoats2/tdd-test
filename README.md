@@ -9,4 +9,4 @@ Some tdd examples.
 * **tic-tac-toe** http://en.wikipedia.org/wiki/Tic-tac-toe
 * **percent-encoder** http://en.wikipedia.org/wiki/Percent-encoding
 * **fizz-buzz** http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz
-* **berlin-clock** http://www.europa-center-berlin.de/en/the-sights/set-theory-clock.html
+* **berlin-clock** http://en.wikipedia.org/wiki/Mengenlehreuhr
